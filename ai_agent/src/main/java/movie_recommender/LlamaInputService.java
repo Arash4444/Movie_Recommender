@@ -34,25 +34,21 @@ public class LlamaInputService extends AbstractLlamaService {
 
           - "intent" MUST be one of:
             [
-              "recommend_movie",
+              "recommend_movie_with_similar_story",
               "recommend_similar_movies",
               "recommend_movies_by_genre",
               "recommend_movies_by_same_director",
               "recommend_movies_by_genre_and_rating",
               "find_movies_by_actor",
               "find_director_of_movie",
-
               "find_top_rated_movies",
               "recommend_movies_by_director",
               "find_highest_revenue_movies_by_genre",
-         "find_movies_by_release_date_range",
               "find_movies_by_year_range",
               "find_movie_cast",
               "find_castmates",
-        "find_movies_of_director_in_year",
-         "find_movie_overview",
+              "find_movie_overview",
               "find_director_with_most_collaborations",
-         "find_top_grossing_movies_of_year",
               "find_most_expensive_movies",
               "unknown_intent"
             ]

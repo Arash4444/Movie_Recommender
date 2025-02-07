@@ -7,15 +7,15 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        Neo4jMovieQuery neo4jQuery = new Neo4jMovieQuery("bolt://localhost:7687","neo4j","12345678");
+        Neo4jMovieQuery neo4jQuery = new Neo4jMovieQuery("bolt://localhost:7687", "neo4j", "12345678");
         LlamaInputService llamaInput = new LlamaInputService();
         LlamaOutputService llamaOutput = new LlamaOutputService();
-        QueryHandler queryHandler = new QueryHandler(neo4jQuery);
+
 
         try {
             System.out.print("Enter your question: ");
             String userQuestion = scanner.nextLine();
-
+            QueryHandler queryHandler = new QueryHandler(neo4jQuery,userQuestion);
             String rawJson = llamaInput.sendPromptToLlama(userQuestion);
             System.out.println("Raw Json: " + rawJson);
 
@@ -37,6 +37,7 @@ public class Main {
             } else {
                 System.out.println("No results found or no valid intent.");
             }
+            
 
         } catch (Exception e) {
             e.printStackTrace();

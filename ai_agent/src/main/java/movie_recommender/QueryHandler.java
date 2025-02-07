@@ -5,9 +5,11 @@ import java.util.List;
 public class QueryHandler {
 
     private final Neo4jMovieQuery neo4jQuery;
+    private String userQuestion;
 
-    public QueryHandler(Neo4jMovieQuery neo4jQuery) {
+    public QueryHandler(Neo4jMovieQuery neo4jQuery , String userQuestion) {
         this.neo4jQuery = neo4jQuery;
+        this.userQuestion=userQuestion;
     }
 
     public List<String> handleIntent(EntityParser parser) {
@@ -123,6 +125,16 @@ public class QueryHandler {
                     System.out.println("No actor specified!");
                 }
                 break;
+            case "recommend_similar_story" :
+            VectorSearch vectorSearch = new VectorSearch(
+                "movies_with_embeddings.json",
+                "http://localhost:11434/api/embeddings"
+            );
+            String vectorResult = vectorSearch.searchSimilarMovie(userQuestion);
+            System.out.println("----- Vector-based Similarity Result -----");
+            System.out.println(vectorResult);
+            System.out.println("--------------------------------------------");
+            break;
 
             /*
              * case "find_movies_by_budget_range":
